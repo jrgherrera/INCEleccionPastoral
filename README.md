@@ -18,5 +18,5 @@ Deploy to firebase hosting
 `firebase deploy`
 
 
-###Developer notes
+### Developer notes
 Don't push directly to master. Create a Pull Request and wait for approval.
