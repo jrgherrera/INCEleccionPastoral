@@ -11,11 +11,7 @@
     <script defer src="/__/firebase/7.19.1/firebase-firestore.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-    <style>
-      .is-hidden {
-        display: none;
-      }
-    </style>
+    <link href="styles.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Se puede empezar con un spinner -->
@@ -28,40 +24,6 @@
       <button class="vote" type="button" value="Guido Solano">Guido Solano</button>
       <button class="vote" type="button" value="Miguel Leitón">Miguel Leitón</button>
     </div>
-    <script>
-      let userData;
-      document.addEventListener('DOMContentLoaded', () => {
-        const db = firebase.firestore();
-        const id = window.location.search.replace('?id=', '');
-        const currentUser = db.collection("users").doc(id);
-        const $buttons = document.getElementById('has-not-voted').querySelectorAll('.vote');
-        currentUser.get().then(res => {
-          // aquí se puede remover el spinner y hacer una animación de entrada
-          userData = res.data();
-          document.getElementById('username').innerHTML = userData.name;
-          if (userData.hasVoted) {
-            document.getElementById('has-voted').classList.remove('is-hidden');
-            document.getElementById('pastor-name').innerHTML = userData.vote;
-          } else {
-            document.getElementById('has-not-voted').classList.remove('is-hidden');
-          }
-        })
-        for (let i = 0; i < $buttons.length; i++) {
-          const $vote = $buttons[i];
-          $vote.addEventListener('click', event => {
-            const vote = event.currentTarget.value;
-            currentUser.set({
-              ...userData,
-              hasVoted: true,
-              vote
-            }).then(() => {
-              document.getElementById('has-not-voted').classList.add('is-hidden');
-              document.getElementById('has-voted').classList.remove('is-hidden');
-              document.getElementById('pastor-name').innerHTML = vote;
-            })
-          });
-        }
-      });
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
