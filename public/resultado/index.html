@@ -11,22 +11,28 @@
     <script defer src="/__/firebase/7.19.1/firebase-firestore.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-    <link href="styles.css" rel="stylesheet" />
+    <link href="../styles.css" rel="stylesheet" />
   </head>
   <body class="loading">
     <!-- Se puede empezar con un spinner -->
-    <div id="list" class="list">
-      <div class="is-hidden" id="user-example">
-        <div class="name">Jorge</div>
-        <div class="link">
-          <a href="/voto?id=23h293h239rb2bf23r">vota acá</a>
+    <h1>Hola Resultados</h1>
+    <div class="container">
+        <div>
+            <div id="miguel">
+                <h2>Miguel Leitón</h2>
+                <div class="votes"></div>
+            </div>
+            <div id="guido">
+                <h2>Guido Solano</h2>
+                <div class="votes"></div>
+            </div>
         </div>
-        <div class="has-voted">
-          <p>HasVoted</p>
-          <input type="checkbox" disabled />
+        <div>
+            <div>Votos totales <span id="total"></span></div>
+            <div>Votos en blanco <span id="blank"></span></div>
+            <div>Votos nulos <span id="null"></span></div>
         </div>
-      </div>
     </div>
-    <script src="scripts/app.js"></script>
+    <script src="../scripts/resultado.js"></script>
   </body>
 </html>

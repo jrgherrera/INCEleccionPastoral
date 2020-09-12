@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iglesia del Nazareno de Coronado - Elección de Pastor 2020</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.19.1/firebase-firestore.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link href="../styles.css" rel="stylesheet" />
+  </head>
+  <body class="loading">
+    <!-- Se puede empezar con un spinner -->
+    <h1>Hola <span id="username"></span></h1>
+    <div id="has-expired" class="is-hidden">
+      <span>El tiempo de votación ha terminado</span>
+    </div>
+    <div id="has-voted" class="is-hidden">
+      <span>Gracias por votar</span>
+      <span>Su voto fue para: <span id="pastor-name"></span></span>
+    </div>
+    <div id="has-not-voted" class="is-hidden">
+      <p>Vote por su candidato a pastor</p>
+      <button class="vote" type="button" value="gs">Guido Solano</button>
+      <button class="vote" type="button" value="ml">Miguel Leitón</button>
+      <button class="vote" type="button" value="none">Ninguno</button>
+    </div>
+    <script src="../scripts/voto.js"></script>
+  </body>
+</html>
