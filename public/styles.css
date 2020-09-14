@@ -36,10 +36,15 @@ body {
 .user {
     border-bottom: 1px solid #ddd;
     padding: 5px;
+    transition: background-color 300ms ease-in-out;
 }
 
 .user:hover {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.user.copied {
+    background-color: rgba(143, 188, 143, 0.7);
 }
 
 .name {

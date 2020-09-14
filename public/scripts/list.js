@@ -39,6 +39,7 @@ function renderList (users, searchVal = '') {
             const $link = $user.querySelector('.link');
             $user.querySelector('.name').innerHTML = userData.name;
             $link.value = `${window.location.href}voto/?id=${userData.id}`;
+            $link.setAttribute('data-key', userData.id);
             $link.addEventListener('click', copyToClipboard)
         
             $user.classList.remove('is-hidden');
@@ -52,9 +53,10 @@ function copyToClipboard (e) {
     const button = e.currentTarget;
     navigator.clipboard.writeText(button.value)
         .then(() => {
-            button.classList.add('copied');
+            $user = document.getElementById(`user-${button.dataset.key}`)
+            $user.classList.add('copied');
             const timeout = setTimeout(() => {
-                button.classList.remove('copied');
+                $user.classList.remove('copied');
             }, 2000);
         })
 }
