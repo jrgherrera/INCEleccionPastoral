@@ -12,20 +12,22 @@
     <script defer src="/__/firebase/7.19.1/firebase-firestore.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-    <link href="../styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
   </head>
   <body class="loading">
     <!-- Se puede empezar con un spinner -->
-    <div id="list" class="list">
-      <div class="is-hidden" id="user-example">
-        <div class="name">Jorge</div>
-        <div class="link">
-          <a href="/voto?id=23h293h239rb2bf23r">vota acá</a>
-        </div>
-        <div class="has-voted">
-          <p>HasVoted</p>
-          <input type="checkbox" disabled />
-        </div>
+    <div class="search">
+      <input type="text" id="search" autocomplete="off" placeholder="Buscar votante"/>
+    </div>
+    <div id="list" class="list"></div>
+    <div class="is-hidden user row" id="user-example">
+      <div class="has-voted col-10">
+        <div class="no">&#128336;</div>
+        <div class="yes">&#10006;</div>
+      </div>
+      <div class="col-70 name">Jorge</div>
+      <div class="col-20">
+        <button type="button" class="link" value>Copiar link</button>
       </div>
     </div>
     <script src="../scripts/auth.js"></script>

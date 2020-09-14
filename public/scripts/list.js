@@ -1,25 +1,60 @@
+let users = [];
+let $list, $userTemplate;
 document.addEventListener('DOMContentLoaded', () => {
     const db = firebase.firestore();
     const collection = db.collection("users");
-    const $list = document.getElementById('list');
-    const $userTemplate = document.getElementById('user-example');
+    $list = document.getElementById('list');
+    $userTemplate = document.getElementById('user-example');
     collection.get().then(querySnapshot => {
         document.body.classList.remove('loading');
         querySnapshot.forEach(user => {
+            users.push({
+                id: user.id,
+                ...user.data()
+            });
+        })
+        renderList(users);
+    });
+    // Search
+    document.getElementById('search').addEventListener('keyup', e => {
+        const searchVal = e.currentTarget.value;
+        clearList()
+        renderList(users, searchVal);
+    })
+});
+
+function clearList () {
+    $list.innerHTML = '';
+}
+
+function renderList (users, searchVal = '') {
+    for (let i = 0; i < users.length; i++) {
+        const userData = users[i];
+        if (userData.name.toLowerCase() .includes(searchVal)) {
             const $user = $userTemplate.cloneNode(true);
-            $user.id = `user-${user.id}`;
-            const userData = user.data();
+            $user.id = `user-${userData.id}`;
             if (userData.hasVoted) {
                 $user.classList.add('disabled')
             }
+            const $link = $user.querySelector('.link');
             $user.querySelector('.name').innerHTML = userData.name;
-            $user.querySelector('.link a').href = `/voto?id=${user.id}`;
-            $user.querySelector('.link a').innerHTML = `${window.location.href}voto?id=${user.id}`;
-            $user.querySelector('.has-voted input[type=checkbox]').checked = userData.hasVoted;
-
+            $link.value = `${window.location.href}voto/?id=${userData.id}`;
+            $link.addEventListener('click', copyToClipboard)
+        
             $user.classList.remove('is-hidden');
-
+        
             $list.appendChild($user);
+        }
+    }
+}
+
+function copyToClipboard (e) {
+    const button = e.currentTarget;
+    navigator.clipboard.writeText(button.value)
+        .then(() => {
+            button.classList.add('copied');
+            const timeout = setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
         })
-    })
-});
+}

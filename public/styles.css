@@ -1,8 +1,84 @@
 .is-hidden {
-    display: none;
+    display: none!important;
 }
 
 .disabled {
     opacity: 0.8;
     pointer-events: none;
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-70 {
+    width: 70%;
+}
+
+.col-20 {
+    width: 20%;
+}
+
+.col-10 {
+    width: 10%;
+}
+
+.user {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+}
+
+.user:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.has-voted {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.has-voted .yes {
+    display: none;
+}
+
+.disabled .has-voted .yes {
+    display: block;
+}
+
+.disabled .has-voted .no {
+    display: none;
+}
+
+.link {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.search {
+    padding: 20px 10px;
+}
+
+.search input {
+    width: 100%;
+    font-size: 18px;
+    height: 45px;
+    padding-left: 15px;
 }
