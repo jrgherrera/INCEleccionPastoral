@@ -30,7 +30,7 @@ function clearList () {
 function renderList (users, searchVal = '') {
     for (let i = 0; i < users.length; i++) {
         const userData = users[i];
-        if (userData.name.toLowerCase() .includes(searchVal)) {
+        if (userData.name.toLowerCase().includes(searchVal)) {
             const $user = $userTemplate.cloneNode(true);
             $user.id = `user-${userData.id}`;
             if (userData.hasVoted) {
