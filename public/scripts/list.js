@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Search
     document.getElementById('search').addEventListener('keyup', e => {
-        const searchVal = e.currentTarget.value;
+        const searchVal = e.currentTarget.value.toLowerCase();
         clearList()
         renderList(users, searchVal);
     })
