@@ -2,7 +2,7 @@ let users = [];
 let $list, $userTemplate;
 document.addEventListener('DOMContentLoaded', () => {
     const db = firebase.firestore();
-    const collection = db.collection("users");
+    const collection = db.collection("users").orderBy('lastName');
     $list = document.getElementById('list');
     $userTemplate = document.getElementById('user-example');
     collection.get().then(querySnapshot => {
@@ -37,7 +37,7 @@ function renderList (users, searchVal = '') {
                 $user.classList.add('disabled')
             }
             const $link = $user.querySelector('.link');
-            $user.querySelector('.name').innerHTML = userData.name;
+            $user.querySelector('.name').innerHTML = `${userData.lastName} ${userData.name}`;
             $link.value = `${window.location.href}voto/?id=${userData.id}`;
             $link.setAttribute('data-key', userData.id);
             $link.addEventListener('click', copyToClipboard)

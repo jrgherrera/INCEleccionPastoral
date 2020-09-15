@@ -15,14 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // aquí se puede remover el spinner y hacer una animación de entrada
             // Si no existe el usuario, hay q mostrar mensaje
             userData = userResponse.data();
-            document.getElementById('username').innerHTML = userData.name;
+            document.getElementById('username').innerHTML = `${userData.name} ${userData.lastName}`;
 
             // Luego verificamos si ya expiró la votación
             generalQuery.forEach(res => {
                 const data = res.data();
-                if (now < (data.initialDate.seconds * 1000) || now > (data.expirationDate.seconds * 1000)) {
+                if (now < (data.initialDate.seconds * 1000)) {
+                    throw 'begin'
+                }
+                if (now > (data.expirationDate.seconds * 1000)) {
                     throw 'expiration'
-                    return userData
                 }
             })
             return userData;
@@ -38,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
             switch (err) {
                 case 'expiration':
                     document.getElementById('has-expired').classList.remove('is-hidden');
+                case 'begin':
+                    document.getElementById('has-not-begin').classList.remove('is-hidden');
                     break;
                 case 'hasVoted':
                     document.getElementById('has-voted').classList.remove('is-hidden');
