@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentUser = db.collection("users").doc(id);
     const currentUserPromise = currentUser.get();
     const $buttons = document.getElementById('has-not-voted').querySelectorAll('.vote');
+    const $confirmPopup = document.getElementById('vote-confirm-popup');
+    const $voteConfirmBtn = $confirmPopup.querySelector('#popup-confirm');
     const now = new Date().getTime();
     Promise.all([generalCollectionPromise, currentUserPromise])
         .then(res => {
@@ -57,15 +59,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const $vote = $buttons[i];
         $vote.addEventListener('click', event => {
             const vote = event.currentTarget.value;
-            currentUser.set({
-                ...userData,
-                hasVoted: true,
-                vote
-            }).then(() => {
-            document.getElementById('has-not-voted').classList.add('is-hidden');
-            document.getElementById('has-voted').classList.remove('is-hidden');
-            document.getElementById('pastor-name').innerHTML = vote;
-        })
+            const candidate = event.currentTarget.querySelector('.vote-name').innerHTML;
+            setConfirmPopup(vote, candidate);
+        });
+    }
+
+    $voteConfirmBtn.addEventListener('click', event => {
+        const vote = event.currentTarget.value;
+        currentUser.set({
+            ...userData,
+            hasVoted: true,
+            vote
+        }).then(() => {
+        document.getElementById('has-not-voted').classList.add('is-hidden');
+        document.getElementById('has-voted').classList.remove('is-hidden');
+        document.getElementById('pastor-name').innerHTML = vote;
+        $confirmPopup.classList.remove('show');
+        document.body.classList.remove('popup-open');
+        });
     });
+
+    //Close Popup
+    $confirmPopup.querySelector('#popup-cancel').addEventListener('click', event => {
+        $confirmPopup.classList.remove('show');
+        document.body.classList.remove('popup-open');
+    });
+
+    //Pasa el value al boton de si del confirm popup
+    function setConfirmPopup (vote, candidate) {
+        $confirmPopup.classList.add('show');
+        document.body.classList.add('popup-open');
+        $confirmPopup.querySelector('#popup-candidate').innerHTML = candidate;
+        $voteConfirmBtn.setAttribute('value', vote);
     }
 });
