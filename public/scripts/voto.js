@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             switch (err) {
                 case 'expiration':
                     document.getElementById('has-expired').classList.remove('is-hidden');
+                    break;
                 case 'begin':
                     document.getElementById('has-not-begin').classList.remove('is-hidden');
                     break;
@@ -49,12 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('has-voted').classList.remove('is-hidden');
                     document.getElementById('pastor-name').innerHTML = userData.vote;
                     break;
-            
                 default:
                     break;
             }
         })
-    
+
     for (let i = 0; i < $buttons.length; i++) {
         const $vote = $buttons[i];
         $vote.addEventListener('click', event => {
@@ -66,16 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $voteConfirmBtn.addEventListener('click', event => {
         const vote = event.currentTarget.value;
+        const candidate = event.currentTarget.dataset.candidate;
         currentUser.set({
             ...userData,
             hasVoted: true,
             vote
         }).then(() => {
-        document.getElementById('has-not-voted').classList.add('is-hidden');
-        document.getElementById('has-voted').classList.remove('is-hidden');
-        document.getElementById('pastor-name').innerHTML = vote;
-        $confirmPopup.classList.remove('show');
-        document.body.classList.remove('popup-open');
+            document.getElementById('has-not-voted').classList.add('is-hidden');
+            document.getElementById('has-voted').classList.remove('is-hidden');
+            document.getElementById('pastor-name').innerHTML = candidate;
+            $confirmPopup.classList.remove('show');
+            document.body.classList.remove('popup-open');
         });
     });
 
@@ -91,5 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('popup-open');
         $confirmPopup.querySelector('#popup-candidate').innerHTML = candidate;
         $voteConfirmBtn.setAttribute('value', vote);
+        $voteConfirmBtn.setAttribute('data-candidate', candidate);
     }
 });

@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
    Css Reset
@@ -13,8 +13,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -25,7 +25,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -50,7 +50,7 @@ table {
 
 /* End Css Reset */
 
-/* Font Face 
+/* Font Face
 * Brandon Grotesque
 */
 
@@ -195,6 +195,11 @@ body {
     padding: 0 1.25rem;
 }
 
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
 body.voting {
     background-color: #fdf9ea;
     font-size: 16px;
@@ -206,7 +211,32 @@ body.voting {
 .voting__wrapper {
     background: url('./images/sunset-bg.png') 0 0 no-repeat #fdf9ea;
     background-size: contain;
+    background-position: top center;
     position: relative;
+}
+
+.voting__wrapper::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 15%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(253,249,234);
+    background: linear-gradient(90deg, rgba(253,249,234,1) 0%, rgba(253,249,234,1) 22%, rgba(253,249,234,0) 100%);
+}
+
+.voting__wrapper::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 15%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgb(253,249,234);
+    background: linear-gradient(90deg, rgba(253,249,234,0) 0%, rgba(253,249,234,1) 76%, rgba(253,249,234,1) 100%);
 }
 
 .hero {
@@ -240,8 +270,19 @@ body.voting {
 #has-not-voted .vote {
     outline: none;
     background: transparent;
-    border: 0;
+    transition: transform 100ms ease-in-out;
+    border: none;
+    cursor: pointer;
 }
+
+#has-not-voted .vote:hover {
+  transform: scale(1.05)
+}
+
+#has-not-voted .vote:hover .vote-bg {
+  border-color: #8b6728;
+}
+
 
 #has-not-voted p {
     padding: 0 .625rem;
@@ -302,7 +343,7 @@ body.voting {
 
 #has-expired, #has-not-begin {
     font-size: 1.25rem;
-    padding: 25vh 0;
+    padding: 10vh 0 40vh;
 }
 
 footer {
@@ -391,6 +432,96 @@ footer .event {
     margin: 0 1.25rem;
 }
 
+
+/* Spinner */
+.loading .content-wrapper {
+  display: none;
+}
+.loading .container {
+    padding-bottom: 220px;
+}
+.loading .spinner {
+  display: block;
+}
+.loading .voting__wrapper {
+  background-size: cover;
+}
+.spinner {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 150px;
+  z-index: 20;
+  display: none;
+}
+.lds-grid {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-grid div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #38BAD6;
+  animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 @media screen and (min-width: 400px) {
     #has-voted .thankyou {
         margin: 5.625rem 0 5rem;
@@ -398,7 +529,7 @@ footer .event {
 
     #has-expired, #has-not-begin {
         font-size: 1.5625rem;
-        padding: 28vh 0;
+        padding: 12vh 0 44vh;
     }
 }
 
@@ -426,7 +557,7 @@ footer .event {
     #has-not-voted .vote-image {
         margin-left: 2.5rem;
         margin-right: 2.5rem;
-        margin-top: 3.75rem; 
+        margin-top: 3.75rem;
     }
 
     #has-not-voted .vote-name {
@@ -454,7 +585,7 @@ footer .event {
 
     #has-expired, #has-not-begin {
         font-size: 1.875rem;
-        padding: 31vh 0;
+        padding: 12vh 0 37vh;
     }
 
     .popup .popup-dialog {
@@ -464,16 +595,19 @@ footer .event {
     .popup .popup-dialog p {
         font-size: 1.25rem;
     }
-    
+
     .popup #popup-candidate {
         font-size: 2.9625rem;
         margin: 1.25rem 0;
     }
-    
+
     .popup .popup-button {
         padding: 0 2.5rem;
         font-size: 1.875rem;
         margin: 0 1.25rem;
+    }
+    .spinner {
+        top: 220px;
     }
 }
 
@@ -505,7 +639,7 @@ footer .event {
     #has-not-voted .vote-image {
         margin-left: 2.5rem;
         margin-right: 2.5rem;
-        margin-top: 3.75rem; 
+        margin-top: 3.75rem;
     }
 
     #has-not-voted .vote-name {
@@ -528,7 +662,7 @@ footer .event {
 
     #has-expired, #has-not-begin {
         font-size: 2.1875rem;
-        padding: 30vh 0;
+        padding: 13vh 0 19vh;
         position: relative;
     }
 
@@ -560,6 +694,9 @@ footer .event {
     .popup #popup-candidate {
         margin-bottom: 2.5rem;
     }
+    .spinner {
+        top: 280px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -569,29 +706,4 @@ footer .event {
         background-size: 1500px;
         background-position: center 0;
     }
-
-    .voting__wrapper::before {
-        content: '';
-        display: block;
-        height: 100%;
-        width: 15%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: rgb(253,249,234);
-        background: linear-gradient(90deg, rgba(253,249,234,1) 0%, rgba(253,249,234,1) 22%, rgba(253,249,234,0) 100%);
-    }
-    
-    .voting__wrapper::after {
-        content: '';
-        display: block;
-        height: 100%;
-        width: 15%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: rgb(253,249,234);
-        background: linear-gradient(90deg, rgba(253,249,234,0) 0%, rgba(253,249,234,1) 76%, rgba(253,249,234,1) 100%);
-    }
 }
-
