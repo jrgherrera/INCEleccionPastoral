@@ -13,25 +13,75 @@
     <script defer src="/__/firebase/init.js"></script>
     <link href="../styles.css" rel="stylesheet" />
   </head>
-  <body class="loading">
-    <!-- Se puede empezar con un spinner -->
-    <h1>Hola <span id="username"></span></h1>
-    <div id="has-expired" class="is-hidden">
-      <span>El tiempo de votación ha terminado</span>
+  <body class="loading voting">
+    <div class="voting__wrapper">
+      <!-- Se puede empezar con un spinner -->
+      <div class="container">
+        <div class="hero">
+          <img class="eleccion-logo" src="../images/eleccion-pastoral-logo.svg" alt="eleccion pastoral"/>
+        </div>
+        <h1 class="username-greet">Hola<br/><span id="username"></span></h1>
+        <div id="has-expired" class="is-hidden">
+          <span>El tiempo de votación ha terminado</span>
+        </div>
+        <div id="has-not-begin" class="is-hidden">
+          <span>La votación aún no ha comenzado</span>
+        </div>
+        <div id="has-voted" class="is-hidden">
+          <div class="thankyou">
+            <span>Gracias por votar,</span>
+            <span>su voto fue para:<br/><span id="pastor-name"></span></span>
+          </div>
+          <div class="election-info">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum euismod odio, quis consequat quam rutrum rutrum. Etiam et nisi enim. Nunc tristique eros non velit eleifend ornare vel id augue. Sed a aliquet augue. Aliquam eu rhoncus enim. Maecenas a risus hendrerit, accumsan nulla ac, aliquam eros. Donec at urna mauris. Nunc id dapibus turpis. Aenean ornare est quis tortor pretium accumsan. Pellentesque malesuada sollicitudin dolor, at pharetra elit semper venenatis. Proin tempus risus ut ipsum accumsan, sit amet tempor odio eleifend.</p>
+          </div>
+        </div>
+        <div id="has-not-voted" class="is-hidden">
+          <p>Vote por su candidato a pastor, dando click sobre la opción que desea seleccionar</p>
+          <div class="vote-options">
+            <button class="vote" type="button" value="gs">
+              <div class="vote-image">
+                <img class="vote-bg" src="../images/fondo-candidato.jpg" alt="fondo candidato">
+                <img class="vote-candidate" src="../images/guido.png" alt="Guido Solano">
+              </div>
+              <span class="vote-name">Guido Solano</span>
+            </button>
+            <button class="vote" type="button" value="ml">
+              <div class="vote-image">
+                <img class="vote-bg" src="../images/fondo-candidato.jpg" alt="fondo candidato">
+                <img class="vote-candidate" src="../images/miguel.png" alt="Miguel Leiton">
+              </div>
+              <span class="vote-name">Miguel Leitón</span>
+            </button>
+            <button class="vote" type="button" value="none">
+              <div class="vote-image">
+                <img class="vote-bg" src="../images/fondo-candidato.jpg" alt="fondo candidato">
+                <img class="vote-candidate" src="../images/ninguno.png" alt="X">
+              </div>
+              <span class="vote-name">Ninguno</span>
+            </button>
+          </div>
+        </div>
+        <div class="popup" id="vote-confirm-popup">
+          <div class="popup-dialog">
+            <p>Está segur@ que desea votar por el candidato:</p>
+            <p id="popup-candidate">Miguel Leiton</p>
+            <button type="button" value="" class="popup-button" id="popup-confirm">Sí</button>
+            <button type="button" class="popup-button" id="popup-cancel">No</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="has-not-begin" class="is-hidden">
-      <span>La votación aún no ha comenzado</span>
-    </div>
-    <div id="has-voted" class="is-hidden">
-      <span>Gracias por votar</span>
-      <span>Su voto fue para: <span id="pastor-name"></span></span>
-    </div>
-    <div id="has-not-voted" class="is-hidden">
-      <p>Vote por su candidato a pastor</p>
-      <button class="vote" type="button" value="gs">Guido Solano</button>
-      <button class="vote" type="button" value="ml">Miguel Leitón</button>
-      <button class="vote" type="button" value="none">Ninguno</button>
-    </div>
+    <footer>
+      <div class="container">
+        <img class="logo" src="../images/inc-logo.svg" alt="Iglesia del Nazareno de Coronado">
+        <div class="copyright">
+          <p class="event">Elección pastoral, Octubre 2020</p>
+          <p class="institution">Iglesia del Nazareno de Coronado, Distrito Central</p>
+        </div>
+      </div>
+    </footer> 
+    <div class="popup-backdrop"></div>
     <script src="../scripts/voto.js"></script>
   </body>
 </html>

@@ -1,3 +1,101 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+   Css Reset
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* End Css Reset */
+
+/* Font Face 
+* Brandon Grotesque
+*/
+
+@font-face {
+    font-family: 'BrandonGrotesqueBold';
+    src: url('./fonts/BrandonGrotesqueBold.eot');
+    src: url('./fonts/BrandonGrotesqueBold.eot') format('embedded-opentype'),
+         url('./fonts/BrandonGrotesqueBold.woff2') format('woff2'),
+         url('./fonts/BrandonGrotesqueBold.woff') format('woff'),
+         url('./fonts/BrandonGrotesqueBold.ttf') format('truetype'),
+         url('./fonts/BrandonGrotesqueBold.svg#BrandonGrotesqueBold') format('svg');
+}
+
+@font-face {
+    font-family: 'BrandonGrotesqueRegular';
+    src: url('./fonts/BrandonGrotesqueRegular.eot');
+    src: url('./fonts/BrandonGrotesqueRegular.eot') format('embedded-opentype'),
+         url('./fonts/BrandonGrotesqueRegular.woff2') format('woff2'),
+         url('./fonts/BrandonGrotesqueRegular.woff') format('woff'),
+         url('./fonts/BrandonGrotesqueRegular.ttf') format('truetype'),
+         url('./fonts/BrandonGrotesqueRegular.svg#BrandonGrotesqueRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'BrandonGrotesqueLight';
+    src: url('./fonts/BrandonGrotesqueLight.eot');
+    src: url('./fonts/BrandonGrotesqueLight.eot') format('embedded-opentype'),
+         url('./fonts/BrandonGrotesqueLight.woff2') format('woff2'),
+         url('./fonts/BrandonGrotesqueLight.woff') format('woff'),
+         url('./fonts/BrandonGrotesqueLight.ttf') format('truetype'),
+         url('./fonts/BrandonGrotesqueLight.svg#BrandonGrotesqueLight') format('svg');
+}
+
+@font-face {
+    font-family: 'BrandonGrotesqueMedium';
+    src: url('./fonts/BrandonGrotesqueMedium.eot');
+    src: url('./fonts/BrandonGrotesqueMedium.eot') format('embedded-opentype'),
+         url('./fonts/BrandonGrotesqueMedium.woff2') format('woff2'),
+         url('./fonts/BrandonGrotesqueMedium.woff') format('woff'),
+         url('./fonts/BrandonGrotesqueMedium.ttf') format('truetype'),
+         url('./fonts/BrandonGrotesqueMedium.svg#BrandonGrotesqueMedium') format('svg');
+}
+
+/* End Font Face */
+
 .is-hidden {
     display: none!important;
 }
@@ -90,3 +188,410 @@ body {
     height: 45px;
     padding-left: 15px;
 }
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+body.voting {
+    background-color: #fdf9ea;
+    font-size: 16px;
+    font-family: 'BrandonGrotesqueRegular', Helvetica, Arial, sans-serif;
+    color: #8B6728;
+    text-align: center;
+}
+
+.voting__wrapper {
+    background: url('./images/sunset-bg.png') 0 0 no-repeat #fdf9ea;
+    background-size: contain;
+    position: relative;
+}
+
+.hero {
+    padding: 2.5rem 0;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,0.8225665266106442) 20%, rgba(255,255,255,0) 42%);
+}
+
+.eleccion-logo {
+    width: 9.375rem;
+    margin: 0 auto;
+    display: block;
+}
+
+.username-greet {
+    font-size: 1.5625rem;
+    margin-bottom: 2.5rem;
+}
+
+.username-greet span {
+    color: #38BAD6;
+    font-family: 'BrandonGrotesqueMedium', Helvetica, Arial, sans-serif;
+    font-size: 1.875rem;
+}
+
+#has-not-voted {
+    font-size: 1.25rem;
+    padding: 0 1.25rem;
+}
+
+#has-not-voted .vote {
+    outline: none;
+    background: transparent;
+    border: 0;
+}
+
+#has-not-voted p {
+    padding: 0 .625rem;
+    margin-bottom: 2.5rem;
+}
+
+#has-not-voted .vote-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#has-not-voted .vote-image {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    margin: 1.875rem 0.625rem .625rem;
+}
+
+#has-not-voted .vote-name {
+    color: #8B6728;
+    font-family: 'BrandonGrotesqueRegular', Helvetica, Arial, sans-serif;
+}
+
+#has-not-voted .vote-bg {
+    border: 3px solid #fff;
+    width: 6.875rem;
+}
+
+#has-not-voted .vote-candidate {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    width: 70%;
+}
+
+#has-not-voted .vote[value="none"] .vote-candidate {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#has-voted .thankyou {
+    font-size: 1.25rem;
+    margin: 3.5rem 0 2.5rem;
+}
+
+#has-voted #pastor-name {
+    color: #38BAD6;
+    font-family: 'BrandonGrotesqueMedium', Helvetica, Arial, sans-serif;
+    font-size: 1.5625rem;
+    margin-top: .625rem;
+}
+
+#has-voted .election-info {
+    line-height: 1.3em;
+}
+
+#has-expired, #has-not-begin {
+    font-size: 1.25rem;
+    padding: 25vh 0;
+}
+
+footer {
+    background-color: #38BAD6;
+    color: #fff;
+    padding: 1.875rem 0;
+    margin-top: 3.75rem;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+footer .logo {
+    width: 4.375rem;
+    align-self: end;
+}
+
+footer .copyright {
+    text-align: right;
+    font-size: 0.625rem;
+    align-self: flex-end;
+}
+
+footer .event {
+    margin-bottom: 0.3125rem;
+}
+
+.popup-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+    opacity: .5;
+    display: none;
+}
+
+.popup-open .popup-backdrop {
+    display: flex;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    align-items: center;
+}
+
+.popup-open .popup.show {
+    display: flex !important;
+}
+
+.popup .popup-dialog {
+    max-width: 90rem;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 1.875rem 1.25rem;
+}
+
+.popup #popup-candidate {
+    font-family: 'BrandonGrotesqueMedium', Helvetica, Arial, sans-serif;
+    color: #42b1ca;
+    font-size: 1.875rem;
+    margin: 0.9375rem 0;
+}
+
+.popup .popup-button {
+    background-color: #42b1ca;
+    border: 0;
+    outline: none;
+    color: #fff;
+    font-family: 'BrandonGrotesqueMedium', Helvetica, Arial, sans-serif;
+    padding: 0 1.875rem;
+    font-size: 1.25rem;
+    margin: 0 1.25rem;
+}
+
+@media screen and (min-width: 400px) {
+    #has-voted .thankyou {
+        margin: 5.625rem 0 5rem;
+    }
+
+    #has-expired, #has-not-begin {
+        font-size: 1.5625rem;
+        padding: 28vh 0;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .eleccion-logo{
+        width: 14.375rem;
+    }
+
+    .username-greet {
+        font-size: 1.875rem;
+    }
+
+    .username-greet span {
+        font-size: 2.5rem;
+        margin-top: 0.625rem;
+    }
+
+    #has-not-voted p {
+        font-size: 1.5625rem;
+        padding: 0 6.25rem;
+    }
+
+    #has-not-voted .vote-image {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+        margin-top: 3.75rem; 
+    }
+
+    #has-not-voted .vote-name {
+        font-size: 1.5625rem;
+    }
+
+    #has-not-voted .vote-bg {
+        width: 13.125rem;
+    }
+
+    #has-voted .thankyou {
+        font-size: 1.875rem;
+        margin: 5.625rem 0 5rem;
+    }
+
+    #has-voted #pastor-name {
+        font-size: 3.125rem;
+    }
+
+    #has-voted .election-info {
+        font-size: 1.125rem;
+        padding: 0 3.125rem;
+        margin-bottom: 29vh;
+    }
+
+    #has-expired, #has-not-begin {
+        font-size: 1.875rem;
+        padding: 31vh 0;
+    }
+
+    .popup .popup-dialog {
+        padding: 3.75rem 2.5rem;
+    }
+
+    .popup .popup-dialog p {
+        font-size: 1.25rem;
+    }
+    
+    .popup #popup-candidate {
+        font-size: 2.9625rem;
+        margin: 1.25rem 0;
+    }
+    
+    .popup .popup-button {
+        padding: 0 2.5rem;
+        font-size: 1.875rem;
+        margin: 0 1.25rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .hero {
+        padding-top: 3.75rem;
+        padding-bottom: 3.75rem;
+    }
+
+    .eleccion-logo{
+        width: 22.5rem;
+    }
+
+    .username-greet {
+        font-size: 2.5rem;
+    }
+
+    .username-greet span {
+        font-size: 3.125rem;
+        margin-top: .625rem;
+    }
+
+    #has-not-voted p {
+        font-size: 1.875rem;
+        padding: 0 12.5rem;
+        margin-bottom: 5rem;
+    }
+
+    #has-not-voted .vote-image {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+        margin-top: 3.75rem; 
+    }
+
+    #has-not-voted .vote-name {
+        font-size: 2.1875rem;
+    }
+
+    #has-not-voted .vote-bg {
+        width: 18.75rem;
+    }
+
+    #has-voted .thankyou {
+        margin: 6.25rem 0 5.625rem;
+    }
+
+    #has-voted .election-info {
+        font-size: 1.375rem;
+        padding: 0 5rem;
+        margin-bottom: 32vh;
+    }
+
+    #has-expired, #has-not-begin {
+        font-size: 2.1875rem;
+        padding: 30vh 0;
+        position: relative;
+    }
+
+    #has-expired::before, #has-not-begin::before {
+        content: '';
+        display: block;
+        width: 100vw;
+        position: absolute;
+        background: rgb(253,249,234);
+        background: linear-gradient(0deg, rgba(253,249,234,1) 7%, rgba(253,249,234,0) 100%);
+    }
+
+    footer {
+        padding: 2.5rem 0;
+    }
+
+    footer .logo {
+        width: 6.25rem;
+    }
+
+    footer .copyright {
+        font-size: .875rem;
+    }
+
+    .popup .popup-dialog {
+        width: 50rem;
+    }
+
+    .popup #popup-candidate {
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .voting__wrapper {
+        margin: 0 auto;
+        max-width: 1500px;
+        background-size: 1500px;
+        background-position: center 0;
+    }
+
+    .voting__wrapper::before {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 15%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgb(253,249,234);
+        background: linear-gradient(90deg, rgba(253,249,234,1) 0%, rgba(253,249,234,1) 22%, rgba(253,249,234,0) 100%);
+    }
+    
+    .voting__wrapper::after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 15%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: rgb(253,249,234);
+        background: linear-gradient(90deg, rgba(253,249,234,0) 0%, rgba(253,249,234,1) 76%, rgba(253,249,234,1) 100%);
+    }
+}
+
