@@ -191,6 +191,10 @@ body {
     padding-left: 15px;
 }
 
+.list {
+  margin-bottom: 100px;
+}
+
 .container {
     max-width: 1140px;
     margin: 0 auto;
@@ -269,7 +273,7 @@ body.voting {
     padding: 0 1.25rem;
 }
 
-#has-not-voted .vote {
+.vote {
     outline: none;
     background: transparent;
     transition: transform 100ms ease-in-out;
@@ -277,11 +281,11 @@ body.voting {
     cursor: pointer;
 }
 
-#has-not-voted .vote:hover {
+.vote:hover {
   transform: scale(1.05)
 }
 
-#has-not-voted .vote:hover .vote-bg {
+.vote:hover .vote-bg {
   border-color: #8b6728;
 }
 
@@ -291,37 +295,37 @@ body.voting {
     margin-bottom: 2.5rem;
 }
 
-#has-not-voted .vote-options {
+.vote-options {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-#has-not-voted .vote-image {
+.vote-image {
     display: flex;
     position: relative;
     box-sizing: border-box;
     margin: 1.875rem 0.625rem .625rem;
 }
 
-#has-not-voted .vote-name {
+.vote-name {
     color: #8B6728;
     font-family: 'BrandonGrotesqueRegular', Helvetica, Arial, sans-serif;
 }
 
-#has-not-voted .vote-bg {
+.vote-bg {
     border: 3px solid #fff;
     width: 6.875rem;
 }
 
-#has-not-voted .vote-candidate {
+.vote-candidate {
     position: absolute;
     bottom: 3px;
     right: 3px;
     width: 70%;
 }
 
-#has-not-voted .vote[value="none"] .vote-candidate {
+.vote[value="none"] .vote-candidate {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -562,7 +566,7 @@ footer .event {
         margin-top: 3.75rem;
     }
 
-    #has-not-voted .vote-name {
+    .vote-name {
         font-size: 1.5625rem;
     }
 
@@ -644,7 +648,7 @@ footer .event {
         margin-top: 3.75rem;
     }
 
-    #has-not-voted .vote-name {
+    .vote-name {
         font-size: 2.1875rem;
     }
 
@@ -708,4 +712,59 @@ footer .event {
         background-size: 1500px;
         background-position: center 0;
     }
+}
+
+.candidate-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 120px;
+}
+
+.card {
+  width: 45%;
+  height: 260px;
+  position: relative;
+}
+
+.card.vote:hover {
+  transform: scale(1);
+}
+
+.card .vote-image {
+  background-image: url(../images/fondo-candidato.jpg);
+  background-size: cover;
+  height: 100%;
+}
+
+.card .vote-candidate {
+  width: 40%;
+}
+
+.card .metadata {
+  position: absolute;
+  top: 70px;
+  left: 50px;
+}
+
+.card .vote-name {
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+}
+
+.card .votes {
+  font-size: 3.125rem;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  margin-top: 15px;
+}
+
+.card.other {
+  background-color: #3abad6;
+  width: 28%;
+}
+
+.card.other .metadata {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

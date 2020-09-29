@@ -13,25 +13,58 @@
     <script defer src="/__/firebase/init.js"></script>
     <link href="../styles.css" rel="stylesheet" />
   </head>
-  <body class="loading">
-    <!-- Se puede empezar con un spinner -->
-    <h1>Hola Resultados</h1>
-    <div class="container">
-        <div>
-            <div id="miguel">
-                <h2>Miguel Leitón</h2>
-                <div class="votes"></div>
-            </div>
-            <div id="guido">
-                <h2>Guido Solano</h2>
-                <div class="votes"></div>
-            </div>
+  <body class="loading voting">
+    <div class="spinner">
+      <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="voting__wrapper">
+      <div class="container">
+        <div class="hero">
+          <img class="eleccion-logo" src="../images/eleccion-pastoral-logo.svg" alt="eleccion pastoral"/>
         </div>
-        <div>
-            <div>Votos totales <span id="total"></span></div>
-            <div>Votos en blanco <span id="blank"></span></div>
-            <div>Votos nulos <span id="null"></span></div>
+        <div class="content-wrapper">
+          <div class="candidate-wrapper">
+            <div class="card vote" id="miguel">
+              <div class="vote-image">
+                <img class="vote-candidate" src="../images/miguel.png" alt="Miguel Leiton">
+              </div>
+              <div class="metadata">
+                <div class="vote-name">Miguel Leitón</div>
+                <div class="votes"></div>
+              </div>
+            </div>
+            <div class="card vote" id="guido">
+              <div class="vote-image">
+                <img class="vote-candidate" src="../images/guido.png" alt="Guido Solano">
+              </div>
+              <div class="metadata">
+                <div class="vote-name">Guido Solano</div>
+                <div class="votes"></div>
+              </div>
+            </div>
+          </div>
+          <div class="candidate-wrapper">
+            <div class="card vote other">
+              <div class="metadata">
+                <div class="vote-name">Votos totales</div>
+                <div id="total" class="votes"></div>
+              </div>
+            </div>
+            <div class="card vote other">
+              <div class="metadata">
+                <div class="vote-name">Votos en blanco</div>
+                <div id="blank" class="votes"></div>
+              </div>
+            </div>
+            <div class="card vote other">
+              <div class="metadata">
+                <div class="vote-name">Votos nulos</div>
+                <div id="null" class="votes"></div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <div class="popup" id="no-support">
       <div class="popup-dialog">
