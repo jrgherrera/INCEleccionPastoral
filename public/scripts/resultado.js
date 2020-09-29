@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (!check()) return false;
     const db = firebase.firestore();
     const collection = db.collection("users");
     let total = 0;

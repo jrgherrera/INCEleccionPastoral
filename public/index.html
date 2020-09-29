@@ -14,22 +14,42 @@
     <script defer src="/__/firebase/init.js"></script>
     <link href="styles.css" rel="stylesheet" />
   </head>
-  <body class="loading">
-    <!-- Se puede empezar con un spinner -->
-    <div class="search">
-      <input type="text" id="search" autocomplete="off" placeholder="Buscar votante"/>
+  <body class="loading voting">
+    <div class="spinner">
+      <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
-    <div id="list" class="list"></div>
-    <div class="is-hidden user row" id="user-example">
-      <div class="has-voted col-10">
-        <div class="no">&#128336;</div>
-        <div class="yes">&#10006;</div>
+    <div class="voting__wrapper">
+      <!-- Se puede empezar con un spinner -->
+      <div class="container">
+        <div class="hero">
+          <img class="eleccion-logo" src="../images/eleccion-pastoral-logo.svg" alt="eleccion pastoral"/>
+        </div>
+        <div class="content-wrapper">
+          <div class="search">
+            <input type="text" id="search" autocomplete="off" placeholder="Buscar votante"/>
+          </div>
+          <div id="list" class="list"></div>
+        </div>
       </div>
-      <div class="col-70 name">Jorge</div>
-      <div class="col-20">
-        <button type="button" class="link" value>Copiar link</button>
+      <div class="is-hidden user row" id="user-example">
+        <div class="has-voted col-10">
+          <div class="no">&#128336;</div>
+          <div class="yes">&#10006;</div>
+        </div>
+        <div class="col-70 name">Jorge</div>
+        <div class="col-20">
+          <button type="button" class="link" value>Copiar link</button>
+        </div>
       </div>
     </div>
+    <div class="popup" id="no-support">
+      <div class="popup-dialog">
+        <p><strong>¡Hola!</strong>Tu navegador no funciona para esta votación</p>
+        <p>Por favor intenta con Google Chrome, Firefox o Safari</p>
+      </div>
+    </div>
+    <div class="popup-backdrop"></div>
+    <script src="../scripts/check.js"></script>
     <script src="../scripts/auth.js"></script>
     <script src="../scripts/list.js"></script>
   </body>
