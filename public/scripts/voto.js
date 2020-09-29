@@ -28,14 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (now > (appData.expirationDate.seconds * 1000)) {
               throw 'expiration'
             }
-            if (appData.lastUpdate.seconds !== Number(localStorage.getItem('idn-lastUpdate'))) {
-              localStorage.setItem('idn-lastUpdate', appData.lastUpdate.seconds)
-              localStorage.removeItem('idn-hasVoted');
-            }
             return userData;
         })
         .then(userData => {
-            if (!userData.hasVoted && !localStorage.getItem('idn-hasVoted')) {
+            if (!userData.hasVoted) {
                 document.getElementById('has-not-voted').classList.remove('is-hidden');
             } else {
                 throw 'hasVoted'
@@ -51,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 case 'hasVoted':
                     document.getElementById('has-voted').classList.remove('is-hidden');
-                    document.getElementById('pastor-name').innerHTML = localStorage.getItem('idn-hasVoted');
+                    document.getElementById('pastor-name').innerHTML = candidate;
                     break;
                 default:
                     break;
@@ -75,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hasVoted: true,
             vote
         }).then(() => {
-          localStorage.setItem('idn-hasVoted', candidate);
           document.getElementById('has-not-voted').classList.add('is-hidden');
           document.getElementById('has-voted').classList.remove('is-hidden');
           document.getElementById('pastor-name').innerHTML = candidate;

@@ -1,41 +1,19 @@
 let users = [];
 let $list, $userTemplate;
 document.addEventListener('DOMContentLoaded', () => {
-    if (!check()) return false;
     const db = firebase.firestore();
     const collection = db.collection("users").orderBy('lastName');
-    const generalCollectionPromise = db.collection("general").doc('appData').get();
     $list = document.getElementById('list');
     $userTemplate = document.getElementById('user-example');
-    generalCollectionPromise
-      .then(doc => {
-        const appData = doc.data();
-        if (Number(localStorage.getItem('idn-lastUpdate')) !== appData.lastUpdate.seconds) {
-          localStorage.setItem('idn-lastUpdate', appData.lastUpdate.seconds)
-          return true;
-        }
-        return false;
-      })
-      .then(downloadData => {
-        if (downloadData || !localStorage.getItem('idn-users')) {
-          return collection.get()
-        } else {
-          users = JSON.parse(localStorage.getItem('idn-users'))
-          renderList();
-        }
-      })
-      .then(querySnapshot => {
+    collection.get().then(querySnapshot => {
         document.body.classList.remove('loading');
-        if (querySnapshot) {
-          querySnapshot.forEach(user => {
-              users.push({
-                  id: user.id,
-                  ...user.data()
-              });
-          })
-          localStorage.setItem('idn-users', JSON.stringify(users));
-          renderList();
-        }
+        querySnapshot.forEach(user => {
+            users.push({
+                id: user.id,
+                ...user.data()
+            });
+        })
+        renderList();
     });
     // Search
     document.getElementById('search').addEventListener('keyup', e => {
