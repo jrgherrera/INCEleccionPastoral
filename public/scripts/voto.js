@@ -4,36 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const db = firebase.firestore();
     const id = window.location.search.replace('?id=', '');
     // Si no hay id hay q mostrar un mensaje
-    const generalCollectionPromise = db.collection("general").get();
+    const appDataPromise = db.collection("general").doc('appData').get();
     const currentUser = db.collection("users").doc(id);
     const currentUserPromise = currentUser.get();
     const $buttons = document.getElementById('has-not-voted').querySelectorAll('.vote');
     const $confirmPopup = document.getElementById('vote-confirm-popup');
     const $voteConfirmBtn = $confirmPopup.querySelector('#popup-confirm');
     const now = new Date().getTime();
-    Promise.all([generalCollectionPromise, currentUserPromise])
+    Promise.all([appDataPromise, currentUserPromise])
         .then(res => {
             document.body.classList.remove('loading');
-            const [generalQuery, userResponse] = res
+            const [appDataDoc, userResponse] = res
             // aquí se puede remover el spinner y hacer una animación de entrada
             // Si no existe el usuario, hay q mostrar mensaje
             userData = userResponse.data();
             document.getElementById('username').innerHTML = `${userData.name} ${userData.lastName}`;
 
             // Luego verificamos si ya expiró la votación
-            generalQuery.forEach(res => {
-                const data = res.data();
-                if (now < (data.initialDate.seconds * 1000)) {
-                    throw 'begin'
-                }
-                if (now > (data.expirationDate.seconds * 1000)) {
-                    throw 'expiration'
-                }
-            })
+            const appData = appDataDoc.data()
+            if (now < (appData.initialDate.seconds * 1000)) {
+              throw 'begin'
+            }
+            if (now > (appData.expirationDate.seconds * 1000)) {
+              throw 'expiration'
+            }
+            if (appData.lastUpdate.seconds !== Number(localStorage.getItem('idn-lastUpdate'))) {
+              localStorage.setItem('idn-lastUpdate', appData.lastUpdate.seconds)
+              localStorage.removeItem('idn-hasVoted');
+            }
             return userData;
         })
         .then(userData => {
-            if (!userData.hasVoted) {
+            if (!userData.hasVoted && !localStorage.getItem('idn-hasVoted')) {
                 document.getElementById('has-not-voted').classList.remove('is-hidden');
             } else {
                 throw 'hasVoted'
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 case 'hasVoted':
                     document.getElementById('has-voted').classList.remove('is-hidden');
-                    document.getElementById('pastor-name').innerHTML = userData.vote;
+                    document.getElementById('pastor-name').innerHTML = localStorage.getItem('idn-hasVoted');
                     break;
                 default:
                     break;
@@ -73,11 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
             hasVoted: true,
             vote
         }).then(() => {
-            document.getElementById('has-not-voted').classList.add('is-hidden');
-            document.getElementById('has-voted').classList.remove('is-hidden');
-            document.getElementById('pastor-name').innerHTML = candidate;
-            $confirmPopup.classList.remove('show');
-            document.body.classList.remove('popup-open');
+          localStorage.setItem('idn-hasVoted', candidate);
+          document.getElementById('has-not-voted').classList.add('is-hidden');
+          document.getElementById('has-voted').classList.remove('is-hidden');
+          document.getElementById('pastor-name').innerHTML = candidate;
+          $confirmPopup.classList.remove('show');
+          document.body.classList.remove('popup-open');
         });
     });
 
