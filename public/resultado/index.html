@@ -9,6 +9,7 @@
     <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/7.19.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-auth.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
     <link href="../styles.css" rel="stylesheet" />
@@ -46,13 +47,13 @@
           <div class="candidate-wrapper">
             <div class="card vote other">
               <div class="metadata">
-                <div class="vote-name">Votos totales</div>
+                <div class="vote-name">Votos realizados</div>
                 <div id="total" class="votes"></div>
               </div>
             </div>
             <div class="card vote other">
               <div class="metadata">
-                <div class="vote-name">Votos en blanco</div>
+                <div class="vote-name">Abstencionismo</div>
                 <div id="blank" class="votes"></div>
               </div>
             </div>
@@ -74,6 +75,7 @@
     </div>
     <div class="popup-backdrop"></div>
     <script src="../scripts/check.js"></script>
+    <script src="../scripts/auth.js"></script>
     <script src="../scripts/resultado.js"></script>
   </body>
 </html>
