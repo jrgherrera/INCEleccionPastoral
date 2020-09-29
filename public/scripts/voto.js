@@ -1,5 +1,6 @@
 let userData;
 document.addEventListener('DOMContentLoaded', () => {
+  if (!check()) return false;
     const db = firebase.firestore();
     const id = window.location.search.replace('?id=', '');
     // Si no hay id hay q mostrar un mensaje

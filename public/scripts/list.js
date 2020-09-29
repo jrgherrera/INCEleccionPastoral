@@ -1,6 +1,7 @@
 let users = [];
 let $list, $userTemplate;
 document.addEventListener('DOMContentLoaded', () => {
+    if (!check()) return false;
     const db = firebase.firestore();
     const collection = db.collection("users").orderBy('lastName');
     $list = document.getElementById('list');
@@ -41,9 +42,9 @@ function renderList (users, searchVal = '') {
             $link.value = `${window.location.href}voto/?id=${userData.id}`;
             $link.setAttribute('data-key', userData.id);
             $link.addEventListener('click', copyToClipboard)
-        
+
             $user.classList.remove('is-hidden');
-        
+
             $list.appendChild($user);
         }
     }
