@@ -340,7 +340,8 @@ body.voting {
     color: #38BAD6;
     font-family: 'BrandonGrotesqueMedium', Helvetica, Arial, sans-serif;
     font-size: 1.5625rem;
-    margin-top: .625rem;
+    margin-top: 1.5rem;
+    display: inline-block;
 }
 
 #has-voted .election-info {
@@ -435,7 +436,7 @@ footer .event {
     font-family: 'BrandonGrotesqueMedium', Helvetica, Arial, sans-serif;
     padding: 0 1.875rem;
     font-size: 1.25rem;
-    margin: 0 1.25rem;
+    margin: 0 1.25rem 1.25rem;
 }
 
 
@@ -610,7 +611,6 @@ footer .event {
     .popup .popup-button {
         padding: 0 2.5rem;
         font-size: 1.875rem;
-        margin: 0 1.25rem;
     }
     .spinner {
         top: 220px;
@@ -767,4 +767,10 @@ footer .event {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.demo .vote:not([value="none"]) .vote-candidate{
+  filter: brightness(0);
+  width: 110%;
+  transform: translateX(90px);
 }

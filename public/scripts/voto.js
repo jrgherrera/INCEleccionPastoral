@@ -1,4 +1,4 @@
-let userData;
+let userData, appData;
 document.addEventListener('DOMContentLoaded', () => {
   if (!check()) return false;
     const db = firebase.firestore();
@@ -15,13 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => {
             document.body.classList.remove('loading');
             const [appDataDoc, userResponse] = res
-            // aquí se puede remover el spinner y hacer una animación de entrada
-            // Si no existe el usuario, hay q mostrar mensaje
             userData = userResponse.data();
             document.getElementById('username').innerHTML = `${userData.name} ${userData.lastName}`;
 
             // Luego verificamos si ya expiró la votación
-            const appData = appDataDoc.data()
+            appData = appDataDoc.data()
+            if (appData.demo) {
+              document.body.classList.add('demo');
+              document.querySelectorAll('.vote-candidate').forEach(img => {
+                if (img.getAttribute('alt') !== 'X') {
+                  img.src = '../images/arms.png';
+                }
+              })
+              document.querySelectorAll('.vote-name').forEach((name, k) => {
+                if (name.innerHTML !== 'Ninguno') {
+                  name.innerHTML = `Candidato ${k + 1}`;
+                }
+              })
+            }
             if (now < (appData.initialDate.seconds * 1000)) {
               throw 'begin'
             }
@@ -47,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 case 'hasVoted':
                     document.getElementById('has-voted').classList.remove('is-hidden');
-                    document.getElementById('pastor-name').innerHTML = candidate;
+                    document.getElementById('pastor-name').innerHTML = userData.vote === 'gs' ? (appData.demo ? 'Candidato 1' : 'Guido Solano') : (appData.demo ? 'Candidato 2' : 'Miguel Leitón');
                     break;
                 default:
                     break;

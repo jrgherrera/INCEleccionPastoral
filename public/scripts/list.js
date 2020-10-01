@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     collection.get().then(querySnapshot => {
         document.body.classList.remove('loading');
         querySnapshot.forEach(user => {
-            users.push({
+            const userData = user.data();
+            !userData.demo && users.push({
                 id: user.id,
                 ...user.data()
             });
