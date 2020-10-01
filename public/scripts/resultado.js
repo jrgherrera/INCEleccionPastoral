@@ -11,18 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('loading');
         querySnapshot.forEach(user => {
             const userData = user.data();
-            total++;
-            if (userData.vote === 'gs') {
-                guido++;
-            }
-            if (userData.vote === 'ml') {
-                miguel++;
-            }
-            if (userData.vote === 'none') {
-                none++;
-            }
-            if (userData.hasVoted) {
-                votes++;
+            if (!userData.demo) {
+              total++;
+              if (userData.vote === 'gs') {
+                  guido++;
+              }
+              if (userData.vote === 'ml') {
+                  miguel++;
+              }
+              if (userData.vote === 'none') {
+                  none++;
+              }
+              if (userData.hasVoted) {
+                  votes++;
+              }
             }
         })
         $miguel = document.querySelector('#miguel .votes');
