@@ -769,8 +769,20 @@ footer .event {
   transform: translate(-50%, -50%);
 }
 
-.demo .vote:not([value="none"]) .vote-candidate{
+.demo .vote:not([value="none"]) .vote-candidate {
   filter: brightness(0);
   width: 110%;
-  transform: translateX(90px);
+  transform: translateX(30px);
+}
+
+@media screen and (min-width: 768px) {
+  .demo .vote:not([value="none"]) .vote-candidate {
+    transform: translateX(60px);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .demo .vote:not([value="none"]) .vote-candidate {
+    transform: translateX(90px);
+  }
 }
