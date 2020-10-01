@@ -302,7 +302,6 @@ body.voting {
 }
 
 .vote-image {
-    display: flex;
     position: relative;
     box-sizing: border-box;
     margin: 1.875rem 0.625rem .625rem;
